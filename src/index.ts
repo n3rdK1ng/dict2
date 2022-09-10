@@ -1,16 +1,11 @@
-import wordListJson from "./words.json";
-interface IWordList {
-  [key: string]: string;
-}
-
-const wordList = wordListJson as IWordList;
-
 /*
 let getRandomTranslatedWord = function (obj: any) {
     var keys = Object.keys(obj);
     return obj[keys[ keys.length * Math.random() << 0]];
 };
 */
+
+import { IWordList, wordList } from "./wordList";
 
 function getRandomOriginalWord(obj: IWordList) {
   const keys = Object.keys(obj);
