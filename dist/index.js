@@ -4,34 +4,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const words_json_1 = __importDefault(require("./words.json"));
+const wordList = words_json_1.default;
 function getRandomOriginalWord(obj) {
-    var keys = Object.keys(obj);
-    return keys[keys.length * Math.random() << 0];
+    const keys = Object.keys(obj);
+    const randomKeyIndex = (keys.length * Math.random()) << 0;
+    const originalWord = keys[randomKeyIndex];
+    return originalWord;
 }
 function getGuess(originalWord) {
-    let guess = prompt(`What is the translation of ${originalWord}?`, 'word');
-    if (guess === null || guess === undefined) {
-        return;
+    const guess = prompt(`What is the translation of ${originalWord}?`, "word");
+    if (!guess) {
+        alert("empty input");
+        return "";
     }
     return guess;
 }
 function checkTranslation(originalWord, translatedWord) {
-    if (originalWord === undefined) {
-        return;
-    }
-    return words_json_1.default[originalWord] === translatedWord;
+    return wordList[originalWord] === translatedWord;
 }
 function play() {
-    let originalWord = getRandomOriginalWord(words_json_1.default);
-    let translatedWord = getGuess(originalWord);
-    if (translatedWord === undefined) {
-        return;
-    }
+    const originalWord = getRandomOriginalWord(wordList);
+    const translatedWord = getGuess(originalWord);
     if (checkTranslation(originalWord, translatedWord)) {
-        alert('Correct!');
+        alert("Correct!");
     }
     else {
-        alert('Incorrect!');
+        alert("Incorrect!");
     }
 }
 play();

@@ -1,8 +1,9 @@
-import wordList from "./words.json";
-
-interface wordList {
+import wordListJson from "./words.json";
+interface IWordList {
   [key: string]: string;
 }
+
+const wordList = wordListJson as IWordList;
 
 /*
 let getRandomTranslatedWord = function (obj: any) {
@@ -11,37 +12,30 @@ let getRandomTranslatedWord = function (obj: any) {
 };
 */
 
-function getRandomOriginalWord(obj: Object): string {
-  var keys = Object.keys(obj);
-  let originalWord = keys[(keys.length * Math.random()) << 0];
-  if (!originalWord) {
-    return "";
-  }
+function getRandomOriginalWord(obj: IWordList) {
+  const keys = Object.keys(obj);
+  const randomKeyIndex = (keys.length * Math.random()) << 0;
+  const originalWord = keys[randomKeyIndex];
   return originalWord;
 }
 
-function getGuess(originalWord: string): string {
-  let guess = prompt(`What is the translation of ${originalWord}?`, "word");
+function getGuess(originalWord: string) {
+  const guess = prompt(`What is the translation of ${originalWord}?`, "word");
   if (!guess) {
+    alert("empty input");
     return "";
   }
   return guess;
 }
 
-function checkTranslation(
-  originalWord: string,
-  translatedWord: string
-): boolean {
+function checkTranslation(originalWord: string, translatedWord: string) {
   return wordList[originalWord] === translatedWord;
 }
 
 function play(): void {
-  let originalWord = getRandomOriginalWord(wordList);
-  let translatedWord = getGuess(originalWord);
+  const originalWord = getRandomOriginalWord(wordList);
+  const translatedWord = getGuess(originalWord);
 
-  if (!originalWord || !translatedWord) {
-    return;
-  }
   if (checkTranslation(originalWord, translatedWord)) {
     alert("Correct!");
   } else {
