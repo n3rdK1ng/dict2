@@ -15,27 +15,27 @@ export const wordList: IWordList = {
   cat: "kocka",
 };
 
-function getRandomOriginalWord(obj: IWordList) {
+const getRandomOriginalWord = (obj: IWordList) => {
   const keys = Object.keys(obj);
   const randomKeyIndex = (keys.length * Math.random()) << 0;
   const originalWord = keys[randomKeyIndex];
   return originalWord;
-}
+};
 
-function getGuess(originalWord: string) {
+const getGuess = (originalWord: string) => {
   const guess = prompt(`What is the translation of ${originalWord}?`, "word");
   if (!guess) {
     alert("empty input");
     return "";
   }
   return guess;
-}
+};
 
-function checkTranslation(originalWord: string, translatedWord: string) {
+const checkTranslation = (originalWord: string, translatedWord: string) => {
   return wordList[originalWord] === translatedWord;
-}
+};
 
-function play() {
+const play = () => {
   const originalWord = getRandomOriginalWord(wordList);
   const translatedWord = getGuess(originalWord);
 
@@ -44,6 +44,6 @@ function play() {
   } else {
     alert("Incorrect!");
   }
-}
+};
 
 play();
