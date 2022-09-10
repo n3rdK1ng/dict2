@@ -13,28 +13,30 @@ let getRandomTranslatedWord = function (obj: any) {
 
 function getRandomOriginalWord(obj: Object): string {
     var keys = Object.keys(obj);
-    return keys[keys.length * Math.random() << 0];
+    let originalWord = keys[keys.length * Math.random() << 0];
+    if (!originalWord) {
+        return "";
+    }
+    return originalWord;
 }
 
-function getGuess(originalWord: string): string | undefined {
+function getGuess(originalWord: string): string {
     let guess = prompt(`What is the translation of ${originalWord}?`, 'word');
-    if (guess === null) {
-        return;
+    if (!guess) {
+        return "";
     }
     return guess;
 }
 
-function checkTranslation(originalWord: string | undefined, translatedWord: string | undefined): boolean | undefined {
-    if (originalWord === null) {
-        return;
-    }
+function checkTranslation(originalWord: string, translatedWord: string): boolean {
     return wordList[originalWord] === translatedWord;
 }
 
 function play(): void {
     let originalWord = getRandomOriginalWord(wordList);
     let translatedWord = getGuess(originalWord);
-    if (translatedWord === undefined) {
+
+    if (!originalWord || !translatedWord) {
         return;
     }
     if (checkTranslation(originalWord, translatedWord)) {
