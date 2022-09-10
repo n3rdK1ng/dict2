@@ -1,10 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+export const wordList = {
+    dog: "pes",
+    house: "dum",
+    cat: "kocka",
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const words_json_1 = __importDefault(require("./words.json"));
-const wordList = words_json_1.default;
 function getRandomOriginalWord(obj) {
     const keys = Object.keys(obj);
     const randomKeyIndex = (keys.length * Math.random()) << 0;

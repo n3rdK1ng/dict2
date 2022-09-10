@@ -5,7 +5,15 @@ let getRandomTranslatedWord = function (obj: any) {
 };
 */
 
-import { IWordList, wordList } from "./wordList";
+export interface IWordList {
+  [key: string]: string;
+}
+
+export const wordList: IWordList = {
+  dog: "pes",
+  house: "dum",
+  cat: "kocka",
+};
 
 function getRandomOriginalWord(obj: IWordList) {
   const keys = Object.keys(obj);
@@ -27,7 +35,7 @@ function checkTranslation(originalWord: string, translatedWord: string) {
   return wordList[originalWord] === translatedWord;
 }
 
-function play(): void {
+function play() {
   const originalWord = getRandomOriginalWord(wordList);
   const translatedWord = getGuess(originalWord);
 
