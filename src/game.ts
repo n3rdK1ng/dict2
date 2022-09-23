@@ -5,16 +5,21 @@ import {
   checkTranslation,
 } from "./translation";
 
-export const play = () => {
-  while (true) {
+const play = () => {
+  while (wordList) {
     const originalWord = getRandomOriginalWord(wordList);
-    const translatedWord = getGuess(originalWord);
-    const isCorrect = checkTranslation(originalWord, translatedWord);
+    let translatedWord = getGuess(originalWord);
+    let isCorrect = checkTranslation(originalWord, translatedWord);
 
-    if (isCorrect) {
-      return "Correct!"
-    } else {
-      return "Incorrect!"
+    while (!isCorrect) {
+      alert("Incorrect!");
+      translatedWord = getGuess(originalWord);
+      isCorrect = checkTranslation(originalWord, translatedWord);
     }
+
+    alert("Correct!");
+    delete wordList[originalWord];
   }
 };
+
+export { play };
