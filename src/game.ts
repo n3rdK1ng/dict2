@@ -6,7 +6,9 @@ import {
 } from "./translation";
 
 const play = () => {
-  while (wordList) {
+  let size = Object.keys(wordList).length;
+
+  while (size > 0) {
     const originalWord = getRandomOriginalWord(wordList);
     let translatedWord = getGuess(originalWord);
     let isCorrect = checkTranslation(originalWord, translatedWord);
@@ -19,6 +21,7 @@ const play = () => {
 
     alert("Correct!");
     delete wordList[originalWord];
+    size = Object.keys(wordList).length;
   }
 };
 
