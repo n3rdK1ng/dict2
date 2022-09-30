@@ -1,21 +1,19 @@
-/*
-const getRandomTranslatedWord = (obj: IWordList) => {
+const getRandomSecondWord = (obj: IWordList) => {
   const keys = Object.keys(obj);
   const randomKeyIndex = (keys.length * Math.random()) << 0;
-  const translatedWord = obj[keys[randomKeyIndex]];
-  return translatedWord;
+  const secondWord = obj[keys[randomKeyIndex]];
+  return secondWord;
 };
-*/
 
 import { IWordList, wordList } from "./data/word-list";
 import { compareObjectValue } from "./utils/object";
 
-const getRandomOriginalWord = (obj: IWordList) => {
+const getRandomFirstWord = (obj: IWordList) => {
   const keys = Object.keys(obj);
   const randomKeyIndex = (keys.length * Math.random()) << 0;
-  const originalWord = keys[randomKeyIndex];
+  const firstWord = keys[randomKeyIndex];
 
-  return originalWord;
+  return firstWord;
 };
 
 const getGuess = (originalWord: string) => {
@@ -30,7 +28,16 @@ const getGuess = (originalWord: string) => {
   return guess;
 };
 
-const checkTranslation = (originalWord: string, translatedWord: string) =>
-  compareObjectValue(wordList, originalWord, translatedWord);
+const checkTranslation = (
+  originalWord: string,
+  translatedWord: string,
+  choice: number
+) => {
+  if (choice === 0) {
+    return compareObjectValue(wordList, originalWord, translatedWord);
+  } else {
+    return compareObjectValue(wordList, translatedWord, originalWord);
+  }
+};
 
-export { getRandomOriginalWord, getGuess, checkTranslation };
+export { getRandomFirstWord, getRandomSecondWord, getGuess, checkTranslation };
