@@ -13,11 +13,15 @@ const getRandomChoice = () => {
 };
 
 const getRandomWord = (choice: number) => {
+  let originalWord = "";
+
   if (choice === 0) {
-    return getRandomFirstWord(wordList);
+    originalWord = getRandomFirstWord(wordList);
   } else {
-    return getRandomSecondWord(wordList);
+    originalWord = getRandomSecondWord(wordList);
   }
+
+  return originalWord;
 };
 
 const play = () => {
@@ -37,6 +41,7 @@ const play = () => {
 
     alert("Correct!");
     delete wordList[originalWord];
+    delete wordList[translatedWord];
     size = Object.keys(wordList).length;
   }
 };
