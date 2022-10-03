@@ -2,6 +2,7 @@ const getRandomSecondWord = (obj: IWordList) => {
   const keys = Object.keys(obj);
   const randomKeyIndex = (keys.length * Math.random()) << 0;
   const secondWord = obj[keys[randomKeyIndex]];
+
   return secondWord;
 };
 
@@ -16,13 +17,12 @@ const getRandomFirstWord = (obj: IWordList) => {
   return firstWord;
 };
 
+// Need to solve undefined input
 const getGuess = (originalWord: string) => {
-  const guess = prompt(`What is the translation of ${originalWord}?`, "word");
+  let guess;
 
-  if (!guess) {
-    alert("empty input");
-
-    return "";
+  while (!guess) {
+    guess = prompt(`What is the translation of ${originalWord}?`);
   }
 
   return guess;
